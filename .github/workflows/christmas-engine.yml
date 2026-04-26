@@ -1,0 +1,54 @@
+name: Christmas Flowers Engine
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  holiday-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Generate Holiday Content
+        run: |
+          TOPICS=("Perfect Christmas Table Centerpieces" "Sending Poinsettias for the Holidays" "Last Minute Christmas Eve Delivery" "Holiday Wreath Care Tips")
+          SELECTED_TOPIC=${TOPICS[$RANDOM % ${#TOPICS[@]}]}
+          
+          FOOTER="<footer style='margin-top:50px; padding:20px; border-top:1px solid #c62828; text-align:center; font-family:sans-serif;'>
+            <nav>
+              <a href='index.html'>Home</a> | 
+              <a href='blog.html'>Holiday Blog</a> | 
+              <a href='faq.html'>FAQ</a> | 
+              <a href='sitemap.xml'>Sitemap</a>
+            </nav>
+            <p>🎅 <a href='https://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799'><strong>Order Christmas Flowers via FloristOne</strong></a></p>
+          </footer>"
+
+          cat > blog.html << EOF
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Christmas Flowers - $SELECTED_TOPIC</title>
+            <style>body{font-family:serif; line-height:1.6; max-width:800px; margin:auto; padding:20px; background:#fffafa; color:#1b5e20;}</style>
+          </head>
+          <body>
+            <h1 style="color:#c62828;">$SELECTED_TOPIC</h1>
+            <p>Make the season bright with hand-delivered floral gifts...</p>
+            $FOOTER
+          </body>
+          </html>
+          EOF
+
+      - name: Commit and Push
+        run: |
+          git config user.name "ChristmasBot"
+          git config user.email "bot@brightlane.dev"
+          git add blog.html
+          git commit -m "Holiday Update: $SELECTED_TOPIC" || echo "No changes"
+          git push
