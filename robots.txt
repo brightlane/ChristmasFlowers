@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Priority Crawling for Holiday Season
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://brightlane.github.io/ChristmasFlowers/sitemap.xml
