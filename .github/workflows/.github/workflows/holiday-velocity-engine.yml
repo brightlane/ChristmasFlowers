@@ -1,0 +1,61 @@
+name: Holiday Velocity Engine
+
+on:
+  schedule:
+    - cron: "0 9 * * *" # Daily 9AM Sync
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-christmas-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Repository
+        uses: actions/checkout@v4
+
+      - name: Programmatic Content Generation
+        run: |
+          # 1. Holiday Keyword Buckets
+          HEADLINES=("Bespoke Christmas Floral Arrangements for 2026" "Artisanal Holiday Greens & Hand-Crafted Wreaths" "The Definitive Guide to Festive Poinsettia Delivery")
+          SELECTED_H=${HEADLINES[$RANDOM % ${#HEADLINES[@]}]}
+          
+          # 2. Reusable Holiday Footer with Cross-Link
+          FOOTER="<footer style='margin-top:50px; padding:30px; border-top:2px solid #2e7d32; text-align:center; font-family:serif;'>
+            <nav>
+              <a href='index.html' style='color:#c62828;'>Festive Home</a> | 
+              <a href='blog.html' style='color:#c62828;'>Holiday Insights</a> | 
+              <a href='faq.html' style='color:#c62828;'>Gift FAQ</a> | 
+              <a href='sitemap.xml' style='color:#c62828;'>Sitemap</a>
+            </nav>
+            <p>🎄 <strong>Need it fast?</strong> <a href='https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799'>Check Christmas Eve Delivery Availability</a></p>
+            <p style='font-size:0.8em; color:#666;'>Partner Site: <a href='https://brightlane.github.io/SameDayFlowers/'>Same Day Flower Delivery</a></p>
+          </footer>"
+
+          # 3. Write to blog.html
+          cat > blog.html << EOF
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <title>$SELECTED_H | Christmas Flowers 2026</title>
+            <meta name="description" content="Expert guide on $SELECTED_H. Send the perfect gift today.">
+            <style>body{font-family:serif; line-height:1.8; max-width:850px; margin:auto; padding:30px; background:#fffafa;}</style>
+          </head>
+          <body>
+            <h1 style="color:#c62828;">$SELECTED_H</h1>
+            <section>
+              <p>In the heart of the 2026 holiday season, selecting the right floral touch is essential for a festive home...</p>
+              </section>
+            $FOOTER
+          </body>
+          </html>
+          EOF
+
+      - name: Deploy Update
+        run: |
+          git config user.name "HolidayVelocityBot"
+          git config user.email "bot@brightlane.dev"
+          git add blog.html
+          git commit -m "Velocity Sync: $SELECTED_H" || echo "No changes"
+          git push
