@@ -1,0 +1,67 @@
+name: Holiday Velocity Engine (Regional Matrix)
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-christmas-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Repository
+        uses: actions/checkout@v4
+
+      - name: Programmatic Content Generation
+        run: |
+          # 1. Headline & City Arrays
+          HEADLINES=("Bespoke Christmas Floral Arrangements" "Artisanal Holiday Greens" "Festive Poinsettia Delivery")
+          CITIES=("Chicago, IL" "New York, NY" "Los Angeles, CA" "Toronto, ON" "Dallas, TX" "Miami, FL" "Seattle, WA")
+          
+          SELECTED_H=${HEADLINES[$RANDOM % ${#HEADLINES[@]}]}
+          SELECTED_C=${CITIES[$RANDOM % ${#CITIES[@]}]}
+          
+          # 2. Reusable Holiday Footer
+          FOOTER="<footer style='margin-top:50px; padding:30px; border-top:2px solid #2e7d32; text-align:center; font-family:serif;'>
+            <nav>
+              <a href='index.html'>Festive Home</a> | 
+              <a href='blog.html'>Holiday Insights</a> | 
+              <a href='faq.html'>Gift FAQ</a> | 
+              <a href='sitemap.xml'>Sitemap</a>
+            </nav>
+            <p>🎄 <strong>Local Delivery in $SELECTED_C:</strong> <a href='https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799'>Check Delivery Slots</a></p>
+          </footer>"
+
+          # 3. Build blog.html with Regional Data
+          cat > blog.html << EOF
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <title>$SELECTED_H in $SELECTED_C | Christmas 2026</title>
+            <style>body{font-family:serif; line-height:1.8; max-width:850px; margin:auto; padding:30px; background:#fffafa;}</style>
+          </head>
+          <body>
+            <h1 style="color:#c62828;">$SELECTED_H in $SELECTED_C</h1>
+            <article>
+              <p>The 2026 holiday season in <strong>$SELECTED_C</strong> is looking more vibrant than ever. Whether you are decorating a home in the heart of the city or sending a gift to the suburbs, our local floral partners are ready...</p>
+              
+              <div style="background:#f1f8e9; padding:20px; border-radius:10px; margin:20px 0;">
+                <h3>Why Order in $SELECTED_C Today?</h3>
+                <p>We leverage a network of premier local florists across the greater $SELECTED_C area to ensure your holiday wreaths and poinsettias arrive fresh, never boxed.</p>
+              </div>
+            </article>
+            $FOOTER
+          </body>
+          </html>
+          EOF
+
+      - name: Deploy Update
+        run: |
+          git config user.name "HolidayVelocityBot"
+          git config user.email "bot@brightlane.dev"
+          git add blog.html
+          git commit -m "Regional Update: $SELECTED_H ($SELECTED_C)" || echo "No changes"
+          git push
