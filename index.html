@@ -4,1158 +4,226 @@
   <meta name="google-site-verification" content="eWVDN3vbam9nnaZQu7wAQKyfmJJdM7zjI80l4DGeUrQ" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- SEO head -->
+
   <title>ChristmasFlowerGifts – Christmas Flowers Canada & USA</title>
-  <meta name="description" content="Order Christmas flowers, poinsettias, winter bouquets, and festive arrangements for fast delivery in Canada & USA through FloristOne. ChristmasFlowerGifts is an affiliate landing page for last‑minute Christmas flower gifts." />
+  <meta name="description" content="Order Christmas flowers, poinsettias, winter bouquets, and festive arrangements for fast delivery in Canada & USA through FloristOne." />
 
-  <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://brightlane.github.io/EasterFlowerGifts/christmas/" />
-  <link rel="alternate" hreflang="en" href="https://brightlane.github.io/EasterFlowerGifts/christmas/" />
-  <link rel="alternate" hreflang="es" href="https://brightlane.github.io/EasterFlowerGifts/christmas/es/" />
-  <link rel="alternate" hreflang="fr" href="https://brightlane.github.io/EasterFlowerGifts/christmas/fr/" />
-  <link rel="alternate" hreflang="de" href="https://brightlane.github.io/EasterFlowerGifts/christmas/de/" />
-  <link rel="alternate" hreflang="zh" href="https://brightlane.github.io/EasterFlowerGifts/christmas/zh/" />
-  <link rel="alternate" hreflang="ja" href="https://brightlane.github.io/EasterFlowerGifts/christmas/ja/" />
-  <link rel="alternate" hreflang="ru" href="https://brightlane.github.io/EasterFlowerGifts/christmas/ru/" />
-  <link rel="alternate" hreflang="ar" href="https://brightlane.github.io/EasterFlowerGifts/christmas/ar/" />
 
-  <!-- OG / Social -->
   <meta property="og:title" content="ChristmasFlowerGifts – Christmas Flowers Delivery Canada & USA" />
-  <meta property="og:description" content="Order Christmas flowers, poinsettias, and winter bouquets fast through FloristOne." />
+  <meta property="og:description" content="Order Christmas flowers fast for Canada & USA." />
   <meta property="og:url" content="https://brightlane.github.io/EasterFlowerGifts/christmas/" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://brightlane.github.io/EasterFlowerGifts/og-christmas-flowers.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Christmas Flowers Canada & USA – Fast Delivery" />
-  <meta name="twitter:description" content="Order Christmas flowers with same‑day delivery for Canada & USA through FloristOne." />
-  <meta name="twitter:image" content="https://brightlane.github.io/EasterFlowerGifts/og-christmas-flowers.jpg" />
-
-  <!-- FAQPage Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Where can I buy Christmas flowers online for Canada and USA?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "You can buy Christmas flowers online for Canada and USA through ChristmasFlowerGifts, which links directly to FloristOne's Christmas collection for fast delivery."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What are the best Christmas flowers to send?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Poinsettias, evergreen arrangements, and festive winter bouquets are among the best Christmas flowers to send because they match holiday decor and are widely available for delivery."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I get Christmas flowers delivered same day in Canada?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Many Christmas flower arrangements can be delivered same day or next day in major Canadian cities like Toronto, Montreal, and Vancouver, depending on cut‑off times and local florist availability."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are these Christmas flowers delivered by FloristOne?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. ChristmasFlowerGifts connects you to FloristOne, which handles Christmas flower delivery through local florists across Canada and USA."
-        }
-      }
-    ]
-  }
-  </script>
 
   <style>
     :root {
-      --primary: #006a44;
-      --primary-dark: #004c2e;
-      --secondary: #bb133e;
-      --accent: #f8e9a1;
-      --light: #f9f9ff;
-      --light-alt: #f0f4ff;
-      --dark: #121212;
-      --mid: #666;
-      --radius: 16px;
-      --shadow: 0 8px 24px rgba(0,0,0,0.15);
-      --gradient: linear-gradient(135deg, #006a44 0%, #bb133e 100%);
-      --transition: all 0.3s ease;
+      --primary:#006a44;
+      --secondary:#bb133e;
+      --light:#f9f9ff;
+      --dark:#121212;
+      --mid:#666;
+      --radius:16px;
+      --shadow:0 8px 24px rgba(0,0,0,0.15);
+      --gradient:linear-gradient(135deg,#006a44 0%,#bb133e 100%);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * {box-sizing:border-box;margin:0;padding:0;}
+    body {font-family:system-ui,sans-serif;background:var(--light);color:var(--dark);line-height:1.6;}
+    a {text-decoration:none;color:inherit;}
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      color: var(--dark);
-      background: var(--light);
-      overflow-x: hidden;
-    }
+    .container {width:min(100% - 32px,1100px);margin:0 auto;}
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: min(100% - 32px, 1100px);
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* ===== Top urgency bar (auto‑countdown) ===== */
     .top-bar {
-      background: #bb133e;
-      color: #fff;
-      padding: 6px 0;
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 600;
+      background:#bb133e;
+      color:#fff;
+      text-align:center;
+      padding:8px;
+      font-weight:600;
+      font-size:0.85rem;
     }
 
-    /* ===== Sticky nav + lang switcher ===== */
     .nav-outer {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: #fff;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      background:#fff;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+      z-index:999;
     }
 
     .main-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 0;
     }
 
-    .logo {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
+    .logo {font-weight:700;color:var(--primary);font-size:1.3rem;}
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
+    .nav-links {display:flex;gap:16px;font-size:0.9rem;color:var(--mid);}
 
-    .nav-links a {
-      font-size: 0.9rem;
-      color: var(--mid);
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .lang-switcher {
-      display: flex;
-      gap: 6px;
-      font-size: 0.8rem;
-    }
-
-    .lang-switcher button {
-      background: transparent;
-      border: 1px solid #ddd;
-      color: var(--mid);
-      padding: 4px 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
-    }
-
-    .lang-switcher button:hover,
-    .lang-switcher button.active {
-      border-color: var(--primary);
-      background: var(--primary);
-      color: #fff;
-    }
-
-    /* ===== Hero section ===== */
     .hero {
-      background: var(--gradient);
-      color: #fff;
-      padding: 60px 16px 90px;
-      text-align: center;
+      background:var(--gradient);
+      color:#fff;
+      text-align:center;
+      padding:60px 16px;
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      font-weight: 800;
-      margin-bottom: 12px;
-      line-height: 1.2;
+    .hero h1 {font-size:2.4rem;margin-bottom:10px;}
+    .hero p {max-width:700px;margin:0 auto 16px;}
+
+    .cta {
+      background:#fff;
+      color:var(--primary);
+      padding:14px 28px;
+      border-radius:30px;
+      font-weight:700;
+      display:inline-block;
     }
 
-    .hero p {
-      font-size: 1.05rem;
-      max-width: 700px;
-      margin: 0 auto 16px;
-      opacity: 0.95;
-    }
-
-    .hero strong {
-      font-weight: 700;
-    }
-
-    .mega-cta {
-      display: inline-block;
-      background: #fff;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 14px 32px;
-      border-radius: 32px;
-      box-shadow: 0 10px 30px rgba(0,106,68,0.35);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin: 8px 0 0;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .mega-cta:hover {
-      transform: translateY(-4px) scale(1.04);
-      box-shadow: 0 16px 40px rgba(0,106,68,0.45);
-    }
-
-    /* ===== Daily Tip of the Day (clickable) ===== */
-    .daily-tip {
-      background: var(--light-alt);
-      padding: 36px 16px;
-      text-align: center;
-    }
-
-    .daily-tip h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--dark);
-    }
-
-    .daily-tip p {
-      font-size: 1.05rem;
-      max-width: 650px;
-      margin: 0 auto 12px;
-      color: var(--mid);
-    }
-
-    .daily-tip em {
-      display: block;
-      margin-top: 6px;
-      font-size: 0.95rem;
-    }
-
-    /* ===== Stats section (4 stats) ===== */
     .stats {
-      background: #fff;
-      padding: 40px 16px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:12px;
+      padding:40px 0;
+      text-align:center;
+      background:#fff;
     }
 
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      text-align: center;
-    }
+    .stat-number {font-size:1.6rem;font-weight:800;color:var(--primary);}
 
-    .section-subtitle {
-      text-align: center;
-      color: var(--mid);
-      font-size: 0.95rem;
-      max-width: 800px;
-      margin: 0 auto 24px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-      text-align: center;
-    }
-
-    .stat-item {
-      padding: 16px 10px;
-    }
-
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--mid);
-    }
-
-    /* ===== Features grid (6 cards) ===== */
     .features {
-      background: var(--light-alt);
-      padding: 40px 16px;
+      padding:40px 0;
+      background:#f0f4ff;
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
     }
 
-    .feature-card {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.16);
-    }
-
-    .feature-icon {
-      width: 50px;
-      height: 50px;
-      background: var(--gradient);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      margin: 0 auto 12px;
-      font-size: 1.2rem;
-    }
-
-    .feature-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-align: center;
-      color: var(--primary);
-    }
-
-    .feature-card p {
-      font-size: 0.9rem;
-      color: var(--mid);
-      text-align: center;
-    }
-
-    /* ===== Testimonials (3) ===== */
-    .testimonials {
-      background: var(--light-alt);
-      padding: 40px 16px;
-    }
-
-    .testimonial {
-      padding: 18px;
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 16px;
-    }
-
-    .testimonial p {
-      margin-bottom: 8px;
-      font-size: 0.95rem;
-      color: var(--mid);
-    }
-
-    .reviewer {
-      font-weight: 600;
-      color: var(--primary);
-      font-size: 0.9rem;
-    }
-
-    /* ===== Pricing cards (Free / Pro / Custom) ===== */
-    .pricing {
-      background: var(--light-alt);
-      padding: 40px 16px 60px;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 16px;
-    }
-
-    .pricing-card {
-      padding: 20px;
-      background: #fff;
-      border-radius: var(--radius);
-      border: 1px solid #e6e6f0;
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .pricing-card.popular {
-      border: 2px solid var(--primary);
-      transform: scale(1.02);
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
-    }
-
-    .pricing-name {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--primary);
-    }
-
-    .pricing-price {
-      font-size: 1.6rem;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .pricing-billed {
-      font-size: 0.85rem;
-      color: var(--mid);
-      margin-bottom: 12px;
-    }
-
-    .pricing-features {
-      font-size: 0.9rem;
-      color: var(--mid);
-      margin-bottom: 16px;
-      text-align: left;
-    }
-
-    .pricing-features li {
-      margin-bottom: 6px;
-      list-style-type: none;
-      position: relative;
-      padding-left: 18px;
-    }
-
-    .pricing-features li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-      font-weight: bold;
-    }
-
-    .pricing-cta {
-      display: inline-block;
-      background: var(--gradient);
-      color: #fff;
-      padding: 10px 24px;
-      border-radius: 24px;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .pricing-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
-
-    /* ===== SEO 1000× content block ===== */
-    .seo-1000x {
-      background: #fff;
-      padding: 40px 16px;
-      font-size: 1.05rem;
-      color: var(--mid);
-    }
-
-    .seo-1000x h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--dark);
-      text-align: center;
-    }
-
-    .seo-1000x p {
-      margin-bottom: 12px;
-    }
-
-    /* ===== FAQ accordion ===== */
-    .faq {
-      background: var(--light-alt);
-      padding: 40px 16px;
-    }
-
-    .faq h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--dark);
-      text-align: center;
+    .card {
+      background:#fff;
+      padding:16px;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      text-align:center;
     }
 
     details {
-      margin-bottom: 14px;
-      background: #fff;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-   summary {
-      cursor: pointer;
-      font-weight: 600;
-      padding: 14px 18px;
-      background: #fff;
+      background:#fff;
+      margin-bottom:10px;
+      border-radius:var(--radius);
+      box-shadow:0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    details summary {
+      padding:14px;
+      font-weight:600;
+      cursor:pointer;
     }
 
     .faq-answer {
-      padding: 14px 18px;
-      background: #fff;
-      border-top: 1px solid #e6e6f0;
+      padding:14px;
+      border-top:1px solid #eee;
+      color:var(--mid);
+    }
+
+    .footer {
+      background:#111;
+      color:#aaa;
+      text-align:center;
+      padding:30px 16px;
+      font-size:0.85rem;
     }
   </style>
 </head>
+
 <body>
-  <!-- Top urgency bar with auto‑countdown -->
-  <div class="top-bar" id="top-bar">
-    CHRISTMAS IS IN 90 DAYS – ORDER FLOWERS TODAY TO GUARANTEE DELIVERY
-  </div>
 
-  <!-- Sticky nav -->
-  <div class="nav-outer">
-    <div class="container">
-      <div class="main-nav">
-        <a href="#" class="logo">ChristmasFlowerGifts</a>
-        <div class="nav-links">
-          <a href="#hero">Home</a>
-          <a href="#tip">Tip</a>
-          <a href="#features">Help</a>
-          <a href="#seo-1000x">Last‑Minute</a>
-          <a href="#faq">FAQ</a>
-          <div class="lang-switcher">
-            <button class="active">EN</button>
-            <button>ES</button>
-            <button>FR</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hero section -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;display:block;">
-        <h1>Christmas Flowers – Same Day Delivery Canada & USA</h1>
-        <p>
-          Order Christmas flowers, poinsettias, evergreen arrangements, and festive bouquets for fast delivery to Canada & USA.
-          This page links you directly to FloristOne for last‑minute Christmas flower delivery.
-        </p>
-        <p>
-          <strong>
-            ChristmasFlowerGifts © 2026 – Helping you send Christmas flowers fast to Canada & USA through FloristOne.
-          </strong>
-        </p>
-        <div class="mega-cta">
-          Order Christmas Flowers Now →
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Daily Tip of the Day (clickable) -->
-  <section id="tip" class="daily-tip">
-    <div class="container">
-      <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;display:block;">
-        <h2>🎄 Daily Tip of the Day</h2>
-        <p>
-          Order your Christmas flowers <strong>2–3 weeks before December 25</strong> for the best selection and freshest arrangements.
-          Poinsettias and festive centerpieces sell out fast in Toronto, Montreal, Vancouver, and major US cities.
-        </p>
-        <em>Click here to shop Christmas flowers on <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a> today via <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>.</em>
-      </a>
-    </div>
-  </section>
-
-  <!-- Stats section (4 stats) -->
-  <section class="stats">
-    <div class="container">
-      <h2 class="section-title">Why Christmas Flowers Are Popular</h2>
-      <p class="section-subtitle">
-        Christmas flowers add warmth and holiday cheer to homes, churches, and events. Common choices include poinsettias, evergreen wreaths, and winter bouquets.
-      </p>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-number">1</span>
-          <span class="stat-label">Christmas Day</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">100+</span>
-          <span class="stat-label">cities</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">2–3</span>
-          <span class="stat-label">week delivery</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">24</span>
-          <span class="stat-label">hours</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features grid (6 cards) -->
-  <section class="features" id="features">
-    <div class="container">
-      <h2 class="section-title">Best Christmas Flowers to Send</h2>
-      <p class="section-subtitle">
-        Poinsettias, evergreen arrangements, and winter bouquets are classic Christmas choices. Use this page to buy them fast with same‑day delivery to Canada & USA.
-      </p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🎄</div>
-          <h3>Poinsettias</h3>
-          <p>Bright red poinsettias are the most iconic Christmas plant, perfect for home or church decor.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌿</div>
-          <h3>Evergreen Wreaths</h3>
-          <p>Classic evergreen wreaths bring traditional holiday charm to doors and tables.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">❄️</div>
-          <h3>Winter Bouquets</h3>
-          <p>White, red, and gold winter bouquets add festive elegance to parties and homes.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎁</div>
-          <h3>Gifts for Family</h3>
-          <p>Christmas flowers make thoughtful gifts for parents, grandparents, and close friends.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⛪</div>
-          <h3>Church & Events</h3>
-          <p>Use Christmas flowers for church altars, Christmas Eve services, and holiday events.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🚚</div>
-          <h3>Fast Delivery</h3>
-          <p>Same‑day or next‑day delivery to major cities in Canada & USA via FloristOne.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials (3) -->
-  <section class="testimonials">
-    <div class="container">
-      <h2 class="section-title">Happy Customers</h2>
-      <p class="section-subtitle">
-        Real people using ChristmasFlowerGifts to send Christmas flowers fast.
-      </p>
-      <div class="testimonial">
-        <p>
-          “I ordered a poinsettia for my mom in Toronto last‑minute and it arrived in perfect condition on Christmas Eve.”
-          All via <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>.
-        </p>
-        <span class="reviewer">– Claire, Toronto</span>
-      </div>
-      <div class="testimonial">
-        <p>
-          “Sent a festive bouquet to my wife in New York and got messages all day saying ‘thank you for the surprise.’”
-          Thanks to <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a>.
-        </p>
-        <span class="reviewer">– Mark, Chicago</span>
-      </div>
-      <div class="testimonial">
-        <p>
-          “Used this page to avoid searching randomly. One click took me to Christmas flowers, fast delivery, no hassle.”
-        </p>
-        <span class="reviewer">– Julien, Montreal</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEO 1000× content block -->
-  <section id="seo-1000x" class="seo-1000x">
-    <div class="container">
-      <h2>Christmas Flowers Delivery Canada & USA – Last‑Minute Help</h2>
-      <p>
-        If you are searching for Christmas flowers delivery Canada & USA, you are in the right place.
-        This page helps you order Christmas flowers, poinsettias, and winter bouquets for fast delivery
-        through trusted partners like FloristOne via <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>.
-      </p>
-      <p>
-        Wherever you are in Toronto, Vancouver, Montreal, Calgary, Ottawa, or any major US city,
-        you can often get Christmas flowers same day delivery if you order before the cutoff time at
-        <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a>.
-      </p>
-      <p>
-        You can also search for “fleurs de Noël livraison Canada” or “Flores de Navidad entrega Estados Unidos”.
-        This page is optimized to answer these questions with fast links to FloristOne checkout.
-      </p>
-      <p style="text-align:center;margin-top:24px;">
-        <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799" target="_blank" rel="noopener" style="display:inline-block;background:var(--gradient);color:#fff;padding:12px 28px;border-radius:28px;font-weight:600;">
-          Click here to order Christmas flowers now – last‑minute guaranteed delivery via ChristmasFlowerGifts
-        </a>
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ accordion -->
-  <section id="faq" class="faq">
-    <div class="container">
-      <h2>Common Christmas Flowers Questions</h2>
-      <details>
-        <summary>Where can I buy Christmas flowers for Canada and USA?</summary>
-        <div class="faq-answer">
-          You can buy Christmas flowers for Canada and USA through <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>,
-          which links to FloristOne for fast delivery.
-        </div>
-      </details>
-      <details>
-        <summary>What are the best Christmas flowers to send?</summary>
-        <div class="faq-answer">
-          Poinsettias, evergreen arrangements, and winter bouquets are best. They match holiday decor and are widely available.
-          You can find them on <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a> via <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>.
-        </div>
-      </details>
-      <details>
-        <summary>Can I get Christmas flowers delivered same day in Canada?</summary>
-        <div class="faq-answer">
-          Yes! Same‑day delivery is available in major cities like Toronto and Montreal through FloristOne.
-          Use this page to get there fast.
-        </div>
-      </details>
-      <details>
-        <summary>Are these Christmas flowers delivered by FloristOne?</summary>
-        <div class="faq-answer">
-          Yes. ChristmasFlowerGifts connects you to FloristOne, which handles Christmas flower delivery through local florists across Canada and USA.
-          Learn more at <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>.
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <!-- Affiliate disclosure -->
-  <div class="affiliate-disclosure">
-    <div class="container">
-      ChristmasFlowerGifts is an affiliate of <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a>.
-      We earn a commission on qualifying Christmas flowers purchases. Prices and availability may vary by city and time.
-      <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a> provides an easy way to order Christmas flowers online for Canada & USA.
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-links">
-        <div>
-          <h4>Shop Christmas Flowers</h4>
-          <a href="#hero">Poinsettias</a>
-          <a href="#features">Best Arrangements</a>
-          <a href="#seo-1000x">Last‑Minute Delivery</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div>
-          <h4>Need Help?</h4>
-          <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799" target="_blank">Visit FloristOne</a>
-          <a href="#seo-1000x">Christmas Flowers Help</a>
-          <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">About This Page</a>
-        </div>
-        <div>
-          <h4>Legal</h4>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
-          <a href="#affiliate">Affiliate Disclosure</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        ChristmasFlowerGifts © 2026 – Helping you send Christmas flowers fast to Canada & USA through FloristOne.
-        Details at <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>.
-      </div>
-    </div>
-  </footer>
-
-  <!-- SEO 10000x – long‑tail, blog‑style content for Google (never delete) -->
-  <section id="seo-posts" class="seo-posts" style="background:#f0f4ff;padding:40px 0 0;font-size:0.95rem;color:#555;">
-    <div class="container">
-      <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:12px;color:#000;text-align:center;">
-        Christmas Flowers SEO Help & Guidance
-      </h2>
-      <p style="text-align:center;margin-bottom:18px;color:#444;">
-        This section helps search engines understand that this page answers questions like:
-        <strong>Christmas flowers last minute Canada & USA</strong>,
-        <strong>poinsettias same day delivery near me</strong>.
-      </p>
-
-      <!-- Post 1: Best Christmas Flowers for Canada & USA 2026 -->
-      <h3 style="font-size:1.2rem;font-weight:600;margin-top:14px;">Best Christmas Flowers for Canada & USA 2026</h3>
-      <p>
-        If you are in Canada or the USA and you are running out of time for Christmas flowers,
-        you do not need to search through every florist website randomly.
-        A simple page called <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a> exists for this exact problem.
-        It links you directly to poinsettias, evergreen arrangements, and winter bouquets with
-        <strong>same‑day delivery options for Canada & USA</strong> through <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a>.
-      </p>
-      <p>
-        By going to <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>, you can quickly:
-      </p>
-      <ul style="margin-left:20px;font-size:0.92rem;margin-bottom:14px;">
-        <li>Order poinsettias same day delivery Canada</li>
-        <li>Order evergreen wreaths for last‑minute Christmas gifts</li>
-        <li>Send Christmas flowers to family or close friends in the USA</li>
-      </ul>
-      <p>
-        If you want to avoid wasting time clicking through many florist sites,
-        <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/"><strong>ChristmasFlowerGifts</strong></a>
-        can be a better starting point than generic “flowers” or “florist” search results.
-      </p>
-
-      <!-- Post 2: How to Order Christmas Flowers Fast -->
-      <h3 style="font-size:1.2rem;font-weight:600;margin-top:20px;">How to Order Christmas Flowers Fast – No Stress, No Last‑Minute Panic</h3>
-      <p>
-        If you have ever panicked last‑minute before Christmas, you know how stressful it is to search for flowers that actually deliver on time.
-        A small page called <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a> exists specifically for people who need:
-        <strong>last minute Christmas flowers same day delivery Canada</strong>
-        or <strong>same day delivery USA</strong>,
-        without the noise of 10 different sites.
-      </p>
-      <p>
-        This page links to poinsettias, evergreen arrangements, and winter bouquets through <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&
-AffiliateID=2013017799">FloristOne</a>, which handles delivery through local florists.
-You can reach it directly at:
-<a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">https://brightlane.github.io/EasterFlowerGifts/christmas/</a>
-</p>
-<p>
-This is especially useful if you:
-</p>
-<ul style="margin-left:20px;font-size:0.92rem;margin-bottom:14px;">
-<li>Need Christmas flowers last minute Canada</li>
-<li>Want poinsettias same day delivery near me</li>
-<li>Want to skip dozens of random search results and land on one fast checkout page</li>
-</ul>
-
-<!-- Post 3: Long‑Tail Christmas‑Flower Searches -->
-<h3 style="font-size:1.2rem;font-weight:600;margin-top:20px;">Long‑Tail Christmas‑Flower Searches Nobody Talks About</h3>
-<p>
-Most florist SEO focuses on generic terms like “flowers” or “florist,” but the real wins come from
-<strong>long‑tail, high‑intent phrases</strong> that match what people actually type when they are ready to buy.
-Examples include:
-</p>
-<ul style="margin-left:20px;font-size:0.92rem;margin-bottom:14px;">
-<li>Christmas flowers last minute Canada</li>
-<li>Poinsettias same day delivery near me</li>
-<li>Christmas flowers for my parents</li>
-<li>Fleurs de Noël livraison Canada</li>
-<li>Flores de Navidad entrega Estados Unidos</li>
-<li>Fast Christmas bouquet delivery for family</li>
-</ul>
-<p>
-One page that matches these phrases without the noise is <a href="https://brightlane.github.io/EasterFlowerGifts/christmas/">ChristmasFlowerGifts</a>,
-which links to poinsettias, evergreen arrangements, and winter bouquets with same‑day delivery to Canada & USA via <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a>.
-By using this page, you skip the random search and land straight on a fast checkout, year after year.
-</p>
-
-<!-- Tiny SEO punchline -->
-<p style="margin-top:24px;font-size:0.9rem;text-align:center;color:#555;">
-If you search for phrases like “Christmas flowers last minute Canada & USA” or “poinsettias same day delivery near me”,
-this page will show up as a simple, focused resource that links you directly to <a href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799">FloristOne</a> for fast Christmas flowers.
-</p>
+<div class="top-bar" id="top-bar">
+  CHRISTMAS COUNTDOWN LOADING...
 </div>
+
+<div class="nav-outer">
+  <div class="container">
+    <div class="main-nav">
+      <div class="logo">ChristmasFlowerGifts</div>
+      <div class="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="hero" id="hero">
+  <div class="container">
+    <h1>Christmas Flowers Canada & USA</h1>
+    <p>Order poinsettias, winter bouquets, and festive arrangements with fast delivery.</p>
+
+    <a class="cta"
+       href="https://www.floristone.com/main.cfm?occ=cm&source_id=aff&AffiliateID=2013017799"
+       target="_blank">
+      Order Christmas Flowers
+    </a>
+  </div>
 </section>
 
-<!-- SEO 10000x – self‑sustaining, self‑ranking “Christmas‑flower guide” -->
-<section id="evergreen-guide" style="background:#f9f9ff;
-padding:40px 0 20px;
-font-size:0.9rem;
-color:#555;
-border-top:1px solid #e6e6f0;">
-<div class="container">
-<h2 style="
-font-size:1.4rem;
-font-weight:700;
-margin-bottom:12px;
-color:#000;
-text-align:center;
-">
-Christmas Flowers Guide – Canonical Help Page
-</h2>
-
-<p style="
-text-align:center;
-margin-bottom:18px;
-color:#444;
-">
-This page is intended as a long‑term, evergreen resource for people searching for:
-<strong>Christmas flowers last minute Canada & USA</strong>,
-<strong>poinsettias same day delivery near me</strong>,
-and related flower‑delivery questions.
-</p>
-
-<!-- Core help section (naturally evergreen) -->
-<h3 style="
-font-size:1.15rem;
-font-weight:600;
-margin-top:16px;
-">
-How This Page Helps You Find Christmas Flowers
-</h3>
-<p>
-To avoid random searching, this page points you to the same trusted flower‑network
-every year, using simple, repeatable phrases. Instead of looking for “flowers” or “florist”,
-you can search for:
-</p>
-<ul style="margin-left:20px;margin-bottom:14px;">
-<li>Christmas flowers last minute Canada</li>
-<li>Christmas flowers last minute USA</li>
-<li>Poinsettias same day delivery near me</li>
-<li>Evergreen arrangements for Christmas gifts</li>
-<li>Christmas flowers for parents</li>
-<li>Christmas flowers for family</li>
-<li>Fleurs de Noël livraison Canada</li>
-<li>Fleurs de Noël livraison États‑Unis</li>
-<li>Last minute Christmas flowers same day Canada</li>
-<li>Fast Christmas bouquet delivery for loved ones</li>
-</ul>
-<p>
-Those long‑tail phrases will increasingly match this page over time,
-because the content and links stay stable and focused on those intents.
-</p>
-
-<!-- Semantic expansion (no dates, no decay) -->
-<h3 style="
-font-size:1.15rem;
-font-weight:600;
-margin-top:20px;
-">
-Why This Page Can Rank Long Term
-</h3>
-<p>
-Three things help this page stay relevant:
-</p>
-<ol style="margin-left:20px;margin-bottom:14px;">
-<li>
-<strong>Evergreen intents.</strong>
-Christmas flowers, poinsettias, and winter bouquets are timeless holiday gifts;
-the questions around “same day delivery” and “last minute” don’t change year‑to‑year.
-</li>
-<li>
-<strong>Stable structure.</strong>
-The title, description, schema, and internal phrasing stay the same, which Google prefers for stable landmarks.
-</li>
-<li>
-<strong>Anchor links and reference points.</strong>
-Other sites and forums that mention “Christmas flowers last minute Canada” or “poinsettias same day delivery” can naturally point to this page.
-</li>
-</ol>
-<p>
-Because of these factors, search engines can treat this page as a persistent, canonical‑style answer for those intents, even if you never edit it again.
-</p>
-
-<!-- “Daily‑style” content layer (simulated, but static) -->
-<h3 style="
-font-size:1.15rem;
-font-weight:600;
-margin-top:20px;
-">
-Simulated “Daily” Christmas‑Flower Notes (Pre‑baked for Years)
-</h3>
-<p>
-Instead of real daily updates, this block includes pre‑written,
-evergreen‑style “notes” that match common search‑intent patterns.
-</p>
-<ul style="margin-left:20px;margin-bottom:14px;">
-<li>
-<strong>“Same‑day delivery” note:</strong>
-Same‑day Christmas flower delivery is often available in major Canadian and US cities if you order before the cutoff time
-through the large flower network linked here.
-</li>
-<li>
-<strong>“Last minute” note:</strong>
-If you are “last minute” and worried about availability,
-focusing on poinsettias and simple winter bouquets tends to give you the best chance of delivery.
-</li>
-<li>
-<strong>“For family” note:</strong>
-Christmas flowers are a thoughtful, last‑minute gift for parents and grandparents;
-traditional red, green, and gold arrangements match the holiday mood.
-</li>
-<li>
-<strong>“For church or events” note:</strong>
-You can use the same platform to send Christmas flowers for church altars or holiday events,
-using the same search patterns.
-</li>
-</ul>
-<p>
-These “notes” are written in a way that mimics a long‑term, small‑site content engine,
-even though they are static and never change.
-</p>
-
-<!-- SEO‑friendly “canonical URL” block -->
-<h3 style="
-font-size:1.15rem;
-font-weight:600;
-margin-top:20px;
-">
-Canonical URL for Christmas‑Flower Searchers
-</h3>
-<p>
-For people who search for phrases like:
-</p>
-<ul style="margin-left:20px;margin-bottom:14px;">
-<li>Christmas flowers last minute Canada & USA</li>
-<li>Poinsettias same day delivery near me</li>
-<li>Last minute Christmas flowers same day Canada</li>
-<li>Fleurs de Noël livraison Canada</li>
-</ul>
-<p>
-The canonical reference URL is:
-</p>
-<p style="
-font-family:monospace;
-font-size:0.95rem;
-padding:6px 10px;
-background:#f0f4ff;
-border:1px solid #ccc;
-border-radius:6px;
-margin-top:8px;
-margin-bottom:14px;
-display:inline-block;
-">
-https://brightlane.github.io/EasterFlowerGifts/christmas/
-</p>
-<p>
-By using this URL consistently in search results, backlinks, and social mentions,
-search engines can gradually treat it as a long‑term, self‑sustaining reference for these intents.
-</p>
-
-<!-- Tiny “maintenance‑free” punchline -->
-<p style="
-margin-top:24px;
-font-size:0.9rem;
-text-align:center;
-color:#555;
-">
-This page is designed to be maintenance‑free: once published, it stays stable so search engines can rely on it as a
-long‑term Christmas‑flower information and referral point, year after year.
-</p>
-</div>
+<section class="stats">
+  <div><div class="stat-number">100+</div>Cities</div>
+  <div><div class="stat-number">24h</div>Delivery</div>
+  <div><div class="stat-number">USA/CA</div>Coverage</div>
+  <div><div class="stat-number">4.8★</div>Rating</div>
 </section>
 
-<!-- SEO seed for Christmas flowers last minute Canada & USA -->
-<p style="
-display:none;
-font-size:0.1rem;
-color:#fff;
-margin:0;
-padding:0;
-">
-Christmas flowers last minute Canada & USA,
-poinsettias same day delivery near me,
-evergreen arrangements for Christmas gifts,
-Christmas flowers for parents,
-Christmas flowers for family,
-fleurs de Noël livraison Canada,
-fleurs de Noël livraison États‑Unis,
-last minute Christmas flowers same day Canada,
-fast Christmas bouquet delivery for loved ones,
-https://brightlane.github.io/EasterFlowerGifts/christmas/
-</p>
+<section class="features">
+  <div class="container grid">
+    <div class="card">🎄 Poinsettias</div>
+    <div class="card">🌿 Evergreen Arrangements</div>
+    <div class="card">❄️ Winter Bouquets</div>
+    <div class="card">🚚 Fast Delivery</div>
+  </div>
+</section>
 
-<!-- SEO 10000x – invisible, high‑targeted flower‑delivery keyword block -->
-<p style="
-display:none;
-font-size:0.1rem;
-color:#fff;
-margin:0;
-padding:0;
-">
-Christmas flowers delivery Canada & USA,
-poinsettias same day delivery near me,
-evergreen arrangements for Christmas gifts,
-Christmas flowers for parents,
-Christmas flowers for family,
-fleurs de Noël livraison Canada,
-fleurs de Noël livraison États‑Unis,
-last minute Christmas flowers same day Canada,
-fast Christmas bouquet delivery for loved ones,
-flower delivery Canada,
-flower delivery USA,
-same day flower delivery Canada,
-same day flower delivery USA,
-flower delivery for last minute gifts,
-bouquet delivery Canada & USA,
-poinsettia arrangement delivery,
-winter bouquet delivery,
-floral arrangement delivery Canada,
-floral arrangement delivery USA,
-Christmas bouquet delivery Canada,
-Christmas bouquet delivery USA,
-same day bouquet delivery Canada,
-same day bouquet delivery USA,
-fast flower delivery Canada,
-fast flower delivery USA,
-birthday flowers delivery Canada,
-birthday flowers delivery USA,
-sympathy flowers delivery Canada,
-sympathy flowers delivery USA,
-anniversary flowers delivery Canada,
-anniversary flowers delivery USA,
-roses delivery Canada,
-roses delivery USA,
-tulips delivery Canada,
-tulips delivery USA,
-daffodils delivery Canada,
-daffodils delivery USA,
-spring flowers delivery Canada,
-spring flowers delivery USA,
-https://brightlane.github.io/EasterFlowerGifts/christmas/
-</p>
+<section class="faq container" id="faq">
+  <h2>FAQ</h2>
 
-<!-- SEO 10000x – invisible flower‑delivery keyword block -->
-<p style="
-display:none;
-font-size:0.1rem;
-color:#fff;
-margin:0;
-padding:0;
-">
-flower delivery flowers florist flower shop florist near me flower delivery near me same day flower delivery online flower delivery send flowers flower arrangements floral arrangements funeral flowers wedding flowers flowers online order flowers online cheap flower delivery local flower delivery flower delivery service flower shop near me fresh flowers Christmas flowers last minute Canada USA poinsettias same day delivery near me evergreen arrangements for Christmas gifts flower delivery Canada flower delivery USA same day flower delivery Canada same day flower delivery USA bouquet delivery Canada USA poinsettia arrangement delivery winter bouquet delivery floral arrangement delivery Canada floral arrangement delivery USA Christmas bouquet delivery Canada Christmas bouquet delivery USA same day bouquet delivery Canada same day bouquet delivery USA fast flower delivery Canada fast flower delivery USA birthday flowers delivery Canada birthday flowers delivery USA sympathy flowers delivery Canada sympathy flowers delivery USA anniversary flowers delivery Canada anniversary flowers delivery USA roses delivery Canada roses delivery USA tulips delivery Canada tulips delivery USA daffodils delivery Canada daffodils delivery USA spring flowers delivery Canada spring flowers delivery USA https://brightlane.github.io/EasterFlowerGifts/christmas/
-</p>
+  <details>
+    <summary>Can I get same-day delivery?</summary>
+    <div class="faq-answer">Yes, in most major cities.</div>
+  </details>
 
-<!-- Auto‑countdown script (Christmas 2026 → December 25, 2026) -->
+  <details>
+    <summary>Where do orders go?</summary>
+    <div class="faq-answer">Through FloristOne network florists.</div>
+  </details>
+</section>
+
+<footer class="footer">
+  © 2026 ChristmasFlowerGifts · Affiliate site
+</footer>
+
 <script>
-// Christmas 2026 (December 25, 2026)
 const christmasDate = new Date("2026-12-25T00:00:00");
-const updateBar = function () {
-const now = new Date();
-const diffTime = christmasDate - now;
-const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-const bar = document.getElementById("top-bar");
-if (bar) {
-if (diffDays > 0) {
-bar.textContent = CHRISTMAS IS IN ${diffDays} DAY${diffDays !== 1 ? "S" : ""} – ORDER FLOWERS TODAY TO GUARANTEE DELIVERY;
-} else if (diffDays === 0) {
-bar.textContent = CHRISTMAS IS TODAY – ORDER FLOWERS RIGHT NOW TO GUARANTEE DELIVERY;
-} else {
-bar.textContent = CHRISTMAS HAS PASSED – CHECK BACK NEXT YEAR FOR CHRISTMAS FLOWERS;
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = christmasDate - now;
+  const days = Math.ceil(diff / (1000*60*60*24));
+
+  const bar = document.getElementById("top-bar");
+
+  if (days > 0) {
+    bar.textContent = `CHRISTMAS IS IN ${days} DAY${days !== 1 ? "S" : ""} – ORDER FLOWERS TODAY`;
+  } else {
+    bar.textContent = "CHRISTMAS DAY IS HERE!";
+  }
 }
-}
-};
-updateBar();
-setInterval(updateBar, 60000); // update every minute
+
+updateCountdown();
+setInterval(updateCountdown, 60000);
 </script>
+
 </body>
 </html>
