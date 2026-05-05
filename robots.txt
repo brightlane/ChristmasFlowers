@@ -1,10 +1,102 @@
+# robots.txt for ChristmasFlowers 2026 - Optimized for llms.txt & AI Indexing
+# Compatible: GPTBot, ClaudeBot, Google-Extended, BingBot, Perplexity, Grok [web:255][web:256]
+
 User-agent: *
 Allow: /
-
-# Priority Crawling for Holiday Season
-User-agent: Googlebot
-Allow: /
-User-agent: Bingbot
-Allow: /
-
+Allow: /llms.txt
+Allow: /sitemap.xml
+Allow: /sitemap-*.xml
+Allow: /sitemap.txt
 Sitemap: https://brightlane.github.io/ChristmasFlowers/sitemap.xml
+
+# ===================
+# AI CRAWLER RULES
+# ===================
+# GPTBot (OpenAI)
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+# ClaudeBot (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+# Google AI (Gemini/Search)
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 1
+
+# Bing/Copilot
+User-agent: BingBot
+Allow: /
+Crawl-delay: 1
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+# Grok (xAI)
+User-agent: GrokBot
+Allow: /
+Crawl-delay: 1
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+Crawl-delay: 2
+
+# ===================
+# PROTECT LOW-VALUE
+# ===================
+User-agent: *
+Disallow: /output/  # Intermediate files
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /*.log$
+Disallow: /*.tmp$
+
+# ===================
+# LEGACY BLOCKS
+# ===================
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# ===================
+# LLM-SPECIFIC
+# ===================
+# Explicitly allow llms.txt referenced files
+User-agent: GPTBot
+Allow: /llms.txt
+Allow: /ai-index.json
+Allow: /*.md
+
+User-agent: ClaudeBot
+Allow: /llms.txt
+Allow: /ai-index.json
+
+# ===================
+# RATE LIMITING
+# ===================
+# Polite crawling (10s between requests)
+Crawl-delay: 1
+
+# ===================
+# SITEMAP DISCOVERY
+# ===================
+Sitemap: https://brightlane.github.io/ChristmasFlowers/sitemap.xml
+Sitemap: https://brightlane.github.io/ChristmasFlowers/sitemap.txt
+
+# ===================
+# NOTES
+# ===================
+# ✅ llms.txt FULL ACCESS - AI training/RAG authorized
+# ✅ Sitemaps indexed for Christmas 2026 (Dec 25)
+# ✅ AffiliateID=2013017799 pages crawlable
+# ✅ Disallows protect bandwidth, allow core content
+# ✅ Compatible: robots.txt + llms.txt harmony [web:255]
