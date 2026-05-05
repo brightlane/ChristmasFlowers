@@ -1,27 +1,38 @@
 {
   "@context": "https://schema.org",
-  "@type": "FlowerShop",
-  "name": "Christmas Floral Collections 2026",
-  "description": "Premium holiday wreaths, poinsettias, and Christmas table centerpieces. Hand-delivered for the holiday season.",
-  "url": "https://brightlane.github.io/ChristmasFlowers/",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Holiday Floral Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Christmas Eve Flower Delivery"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Corporate Holiday Gifting"
-        }
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does same-day flower delivery work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Same-day flower delivery allows you to place an order and have flowers delivered within the same day, depending on availability and location."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What occasions can I send flowers for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flowers can be sent for birthdays, anniversaries, sympathy, romance, get well wishes, and holidays like Christmas and Mother's Day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I order flowers last minute?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, many arrangements are available for last-minute ordering with same-day delivery options."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most popular flowers to send?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roses, lilies, tulips, and seasonal mixed bouquets are among the most popular flower choices."
+      }
+    }
+  ]
 }
