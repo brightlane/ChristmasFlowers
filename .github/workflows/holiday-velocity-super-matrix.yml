@@ -3,57 +3,161 @@ name: Holiday Velocity Super-Matrix
 on:
   schedule:
     - cron: "0 9 * * *"
-  workflow_dispatch: {}
+
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: christmasflowers-supermatrix
+  cancel-in-progress: false
+
 jobs:
   generate-and-link:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Sync Latest Remote Main
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
 
       - name: Master Content & Link Injection
+        shell: bash
         run: |
-          # 1. Variables
+          # Dynamic City Rotation
           CITY_LIST=("Chicago" "New York" "London" "Toronto" "Los Angeles" "Miami" "Dallas")
           CITY=${CITY_LIST[$RANDOM % ${#CITY_LIST[@]}]}
-          
-          # 2. THE CROSS-LINK FOOTER (The "1 Code" Secret)
-          # This footer links back to your other project to boost overall domain authority
+
+          echo "Selected city: $CITY"
+
+          # Cross-Link Footer
           CROSS_LINK_FOOTER="<footer style='margin-top:60px; padding:40px; border-top:4px solid #2e7d32; text-align:center; background:#fffcfd; font-family:serif;'>
             <div style='margin-bottom:20px;'>
-              <a href='index.html'>Home</a> | <a href='blog.html'>Holiday Blog</a> | <a href='faq.html'>200+ FAQs</a> | <a href='sitemap.xml'>Sitemap</a>
+              <a href='index.html'>Home</a> |
+              <a href='blog.html'>Holiday Blog</a> |
+              <a href='faq.html'>200+ FAQs</a> |
+              <a href='sitemap.xml'>Sitemap</a>
             </div>
+
             <div style='background:#fdeff2; padding:15px; border-radius:10px; border:1px solid #d63384; display:inline-block;'>
               <strong>Looking for non-holiday flowers?</strong><br>
-              Visit our partner: <a href='https://brightlane.github.io/SameDayFlowers/' style='color:#d63384; font-weight:bold;'>Same Day Flowers Express</a>
+              Visit our partner:
+              <a href='https://brightlane.github.io/SameDayFlowers/' style='color:#d63384; font-weight:bold;'>
+                Same Day Flowers Express
+              </a>
             </div>
-            <p style='margin-top:20px;'>🎄 <strong>Now Serving $CITY:</strong> <a href='https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799'><strong>Shop Christmas Collection</strong></a></p>
+
+            <p style='margin-top:20px;'>
+              🎄 <strong>Now Serving $CITY:</strong>
+              <a href='https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799'>
+                <strong>Shop Christmas Collection</strong>
+              </a>
+            </p>
           </footer>"
 
-          # 3. Generate the Page
-          cat > blog.html << EOF
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <title>Bespoke Christmas Arrangements in $CITY | 2026 Guide</title>
-            <style>body{font-family:serif; line-height:1.8; max-width:850px; margin:auto; padding:30px; background:#fffafa;}</style>
-          </head>
-          <body>
-            <h1>Christmas Floral Trends for $CITY Residents</h1>
-            <p>Today we are looking at the unique holiday traditions in <strong>$CITY</strong> and how to get guaranteed delivery...</p>
-            $CROSS_LINK_FOOTER
-          </body>
-          </html>
-          EOF
+          # Generate Dynamic Blog Page
+          cat > blog.html <<EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bespoke Christmas Arrangements in $CITY | 2026 Guide</title>
+
+  <meta name="description" content="Luxury Christmas flower delivery in $CITY. Holiday arrangements, same-day flowers, festive centerpieces and winter floral gifts.">
+
+  <style>
+    body{
+      font-family:serif;
+      line-height:1.8;
+      max-width:850px;
+      margin:auto;
+      padding:30px;
+      background:#fffafa;
+      color:#222;
+    }
+
+    h1{
+      color:#b91c1c;
+    }
+
+    a{
+      color:#b91c1c;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Christmas Floral Trends for $CITY Residents</h1>
+
+  <p>
+    Discover elegant winter floral trends, luxury Christmas centerpieces,
+    wreath arrangements, poinsettias, and same-day flower delivery options
+    throughout $CITY.
+  </p>
+
+  <p>
+    Seasonal bouquets continue trending across holiday dining,
+    luxury gifting, winter weddings and corporate events.
+  </p>
+
+  $CROSS_LINK_FOOTER
+
+</body>
+</html>
+EOF
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "SuperMatrixBot"
+          git config --global user.email "bot@brightlane.dev"
 
       - name: Commit Changes
+        shell: bash
         run: |
-          git config user.name "SuperMatrixBot"
-          git config user.email "bot@brightlane.dev"
           git add blog.html
-          git commit -m "Engine Sync: $CITY Cross-Link Update" || echo "No changes"
-          git push
+
+          if git diff --cached --quiet; then
+            echo "No changes detected."
+            exit 0
+          fi
+
+          git commit -m "Engine Sync: Holiday Cross-Link Update"
+
+      - name: Safe Push Retry Loop
+        shell: bash
+        run: |
+          for i in 1 2 3 4 5; do
+            echo "Push attempt $i"
+
+            git fetch origin main
+
+            git rebase origin/main || {
+              echo "Rebase failed. Retrying..."
+              git rebase --abort || true
+              sleep 3
+              continue
+            }
+
+            if git push origin main; then
+              echo "Push successful."
+              exit 0
+            fi
+
+            echo "Push rejected. Waiting before retry..."
+            sleep 5
+          done
+
+          echo "Failed to push after multiple retries."
+          exit 1
