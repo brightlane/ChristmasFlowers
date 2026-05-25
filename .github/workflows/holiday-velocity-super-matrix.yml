@@ -35,11 +35,11 @@ jobs:
           git checkout main
           git reset --hard origin/main
 
-      - name: Generate 10K Word Matrix
+      - name: Generate Christmas Matrix Content
         shell: bash
         run: |
           # =========================
-          # SEO DATA ARRAYS
+          # SEO ARRAYS
           # =========================
           CITIES=("Chicago, IL" "New York, NY" "Toronto, ON" "Los Angeles, CA" "Miami, FL" "Dallas, TX" "Vancouver, BC" "Boston, MA")
 
@@ -50,21 +50,24 @@ jobs:
                   "Elegant Winter Rose Arrangements" \
                   "Same-Day Christmas Bouquets")
 
-          QUORA_Q=("What is the best flower for a Christmas gift?" \
-                   "How do I keep my holiday bouquet fresh?" \
-                   "Where can I order flowers on Dec 24th?" \
-                   "Is a Poinsettia better than a Wreath?" \
-                   "What flowers last longest during winter?")
+          QUESTIONS=("What is the best flower for a Christmas gift?" \
+                     "How do I keep my holiday bouquet fresh?" \
+                     "Where can I order flowers on Dec 24th?" \
+                     "Is a Poinsettia better than a Wreath?" \
+                     "What flowers last longest during winter?")
 
           # =========================
-          # RANDOMIZED SEO SELECTION
+          # RANDOM SEO SELECTION
           # =========================
           CITY="${CITIES[$RANDOM % ${#CITIES[@]}]}"
           TOPIC="${TOPICS[$RANDOM % ${#TOPICS[@]}]}"
-          QUESTION="${QUORA_Q[$RANDOM % ${#QUORA_Q[@]}]}"
+          QUESTION="${QUESTIONS[$RANDOM % ${#QUESTIONS[@]}]}"
+
+          echo "Selected City: $CITY"
+          echo "Selected Topic: $TOPIC"
 
           # =========================
-          # PAGE GENERATION
+          # GENERATE BLOG.HTML
           # =========================
           cat > blog.html <<EOF
           <!DOCTYPE html>
@@ -77,16 +80,16 @@ jobs:
 
             <meta name="description" content="Expert holiday guide on $TOPIC specifically for residents of $CITY. Hand-delivered Christmas flowers and festive arrangements for 2026.">
 
-            <meta name="keywords" content="Christmas flowers $CITY, $TOPIC, holiday bouquets, poinsettia delivery, florist delivery">
+            <meta name="keywords" content="Christmas flowers $CITY, holiday flowers, poinsettia delivery, florist delivery, wreaths, Christmas bouquets">
 
             <meta property="og:title" content="$TOPIC in $CITY">
-            <meta property="og:description" content="Discover the best Christmas floral trends and local flower delivery tips for $CITY.">
+            <meta property="og:description" content="Fresh Christmas flowers and same-day holiday floral delivery in $CITY.">
             <meta property="og:type" content="website">
             <meta property="og:url" content="https://brightlane.github.io/ChristmasFlowers/blog.html">
 
             <style>
               body{
-                font-family: Georgia, serif;
+                font-family:Georgia,serif;
                 line-height:1.8;
                 max-width:900px;
                 margin:auto;
@@ -164,54 +167,52 @@ jobs:
                 <h2>Holiday Trends in $CITY</h2>
 
                 <p>
-                  The 2026 holiday season in <strong>$CITY</strong> is seeing a huge rise
-                  in demand for <strong>$TOPIC</strong>. Families are choosing locally
+                  The 2026 holiday season in <strong>$CITY</strong> is seeing increased
+                  demand for <strong>$TOPIC</strong>. Families are searching for
                   hand-arranged floral gifts that arrive fresh and professionally styled.
                 </p>
 
                 <p>
-                  Local florist fulfillment creates faster delivery times, fresher greens,
-                  and premium presentation compared to warehouse-shipped bouquets.
+                  Local florist fulfillment creates faster delivery times,
+                  fresher greenery, and premium holiday presentation.
                 </p>
               </div>
 
               <div class="card">
-                <h2>Quora Spotlight</h2>
+                <h2>Holiday Q&A Spotlight</h2>
 
                 <p><strong>Question:</strong> $QUESTION</p>
 
                 <p>
-                  <strong>Answer:</strong> When shopping for holiday flowers in
-                  <strong>$CITY</strong>, locally arranged delivery is the best option.
-                  FloristOne partners with neighborhood florists to ensure every bouquet
-                  is hand-designed and delivered fresh.
+                  <strong>Answer:</strong> Local florist delivery remains the best option
+                  for holiday flowers in <strong>$CITY</strong>. FloristOne partners with
+                  nearby designers to ensure every arrangement is hand-crafted and delivered fresh.
                 </p>
               </div>
 
               <div class="card">
-                <h2>Why Christmas Flower Delivery Matters</h2>
+                <h2>Why Holiday Flower Delivery Matters</h2>
 
                 <p>
-                  Professional floral arrangements bring warmth and festive energy into homes,
-                  offices, churches, and holiday parties. Modern holiday bouquets combine
-                  roses, cedar, pine, poinsettias, eucalyptus, berries, and winter greenery.
+                  Christmas floral arrangements bring warmth and festive atmosphere
+                  into homes, businesses, churches, and family gatherings.
                 </p>
 
                 <p>
-                  Same-day delivery helps last-minute shoppers still create memorable moments
-                  during the busiest holiday week of the year.
+                  Popular 2026 trends include cedar wreaths, poinsettias,
+                  winter roses, pine accents, berries, and elegant gold ribbon designs.
                 </p>
               </div>
 
               <div class="card">
-                <h2>Best Sellers for 2026</h2>
+                <h2>Top Christmas Floral Picks</h2>
 
                 <ul>
-                  <li>Luxury Red Rose Christmas Bouquets</li>
+                  <li>Luxury Red Rose Holiday Bouquets</li>
                   <li>Classic Poinsettia Gift Baskets</li>
-                  <li>Fresh Cedar Holiday Wreaths</li>
-                  <li>Winter White Centerpieces</li>
-                  <li>Gold Ribbon Designer Arrangements</li>
+                  <li>Fresh Winter Cedar Wreaths</li>
+                  <li>Designer Holiday Centerpieces</li>
+                  <li>White & Gold Christmas Arrangements</li>
                 </ul>
               </div>
 
@@ -228,6 +229,7 @@ jobs:
 
               <p style="margin-top:20px;">
                 🎄 <strong>Now Serving $CITY:</strong>
+
                 <a href="https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799">
                   Shop the Christmas Collection
                 </a>
@@ -253,19 +255,20 @@ jobs:
             exit 0
           fi
 
-          git commit -m "SuperMatrix Sync: Holiday SEO Refresh"
+          git commit -m "SuperMatrix Sync: Christmas SEO Refresh"
 
-      - name: Safe Push Loop
+      - name: Safe Push Engine
         shell: bash
         run: |
           for i in 1 2 3 4 5; do
+
             echo "Push attempt $i"
 
             git fetch origin main
 
-            git rebase origin/main || {
+            git pull --rebase origin main || {
+              echo "Pull failed. Retrying..."
               git rebase --abort || true
-              echo "Rebase failed. Retrying..."
               sleep 3
               continue
             }
@@ -275,11 +278,12 @@ jobs:
               exit 0
             fi
 
-            echo "Push rejected. Retrying..."
+            echo "Push rejected. Retrying in 5 seconds..."
             sleep 5
+
           done
 
-          echo "Failed after multiple push attempts"
+          echo "Push failed after multiple attempts"
           exit 1
 
       - name: Send Social Webhook
@@ -290,10 +294,10 @@ jobs:
 
             curl -X POST "$SOCIAL_WEBHOOK_URL" \
               -H "Content-Type: application/json" \
-              -d "{\"title\":\"Holiday Flower Guide\",\"url\":\"https://brightlane.github.io/ChristmasFlowers/blog.html\",\"caption\":\"Fresh Christmas flower delivery ideas for 2026 🎄\"}"
+              -d "{\"title\":\"Christmas Flowers 2026\",\"url\":\"https://brightlane.github.io/ChristmasFlowers/blog.html\",\"caption\":\"Fresh holiday flower delivery trends for 2026 🎄\"}"
 
           else
-            echo "SOCIAL_WEBHOOK_URL secret missing. Skipping webhook."
+            echo "No SOCIAL_WEBHOOK_URL configured"
           fi
 
       - name: Workflow Complete
