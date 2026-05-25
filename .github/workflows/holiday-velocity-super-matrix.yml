@@ -1,4 +1,4 @@
-name: Holiday Velocity Super-Matrix
+name: Christmas Super Matrix Engine
 
 on:
   schedule:
@@ -10,11 +10,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: christmasflowers-supermatrix
+  group: christmas-super-matrix
   cancel-in-progress: false
 
 jobs:
-  generate-and-link:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,104 +24,224 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Sync Latest Remote Main
+      - name: Setup Git Identity
+        run: |
+          git config --global user.name "SuperMatrixBot"
+          git config --global user.email "bot@brightlane.dev"
+
+      - name: Sync Latest Remote
         run: |
           git fetch origin main
           git checkout main
           git reset --hard origin/main
 
-      - name: Master Content & Link Injection
+      - name: Generate 10K Word Matrix
         shell: bash
         run: |
-          # Dynamic City Rotation
-          CITY_LIST=("Chicago" "New York" "London" "Toronto" "Los Angeles" "Miami" "Dallas")
-          CITY=${CITY_LIST[$RANDOM % ${#CITY_LIST[@]}]}
+          # =========================
+          # SEO DATA ARRAYS
+          # =========================
+          CITIES=("Chicago, IL" "New York, NY" "Toronto, ON" "Los Angeles, CA" "Miami, FL" "Dallas, TX" "Vancouver, BC" "Boston, MA")
 
-          echo "Selected city: $CITY"
+          TOPICS=("Luxury Poinsettia Delivery" \
+                  "Bespoke Holiday Centerpieces" \
+                  "Fresh Cedar Wreath Care" \
+                  "Christmas Eve Floral Logistics" \
+                  "Elegant Winter Rose Arrangements" \
+                  "Same-Day Christmas Bouquets")
 
-          # Cross-Link Footer
-          CROSS_LINK_FOOTER="<footer style='margin-top:60px; padding:40px; border-top:4px solid #2e7d32; text-align:center; background:#fffcfd; font-family:serif;'>
-            <div style='margin-bottom:20px;'>
-              <a href='index.html'>Home</a> |
-              <a href='blog.html'>Holiday Blog</a> |
-              <a href='faq.html'>200+ FAQs</a> |
-              <a href='sitemap.xml'>Sitemap</a>
-            </div>
+          QUORA_Q=("What is the best flower for a Christmas gift?" \
+                   "How do I keep my holiday bouquet fresh?" \
+                   "Where can I order flowers on Dec 24th?" \
+                   "Is a Poinsettia better than a Wreath?" \
+                   "What flowers last longest during winter?")
 
-            <div style='background:#fdeff2; padding:15px; border-radius:10px; border:1px solid #d63384; display:inline-block;'>
-              <strong>Looking for non-holiday flowers?</strong><br>
-              Visit our partner:
-              <a href='https://brightlane.github.io/SameDayFlowers/' style='color:#d63384; font-weight:bold;'>
-                Same Day Flowers Express
-              </a>
-            </div>
+          # =========================
+          # RANDOMIZED SEO SELECTION
+          # =========================
+          CITY="${CITIES[$RANDOM % ${#CITIES[@]}]}"
+          TOPIC="${TOPICS[$RANDOM % ${#TOPICS[@]}]}"
+          QUESTION="${QUORA_Q[$RANDOM % ${#QUORA_Q[@]}]}"
 
-            <p style='margin-top:20px;'>
-              🎄 <strong>Now Serving $CITY:</strong>
-              <a href='https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799'>
-                <strong>Shop Christmas Collection</strong>
-              </a>
-            </p>
-          </footer>"
-
-          # Generate Dynamic Blog Page
+          # =========================
+          # PAGE GENERATION
+          # =========================
           cat > blog.html <<EOF
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Bespoke Christmas Arrangements in $CITY | 2026 Guide</title>
+            <title>$TOPIC in $CITY | Christmas Flowers 2026</title>
 
-  <meta name="description" content="Luxury Christmas flower delivery in $CITY. Holiday arrangements, same-day flowers, festive centerpieces and winter floral gifts.">
+            <meta name="description" content="Expert holiday guide on $TOPIC specifically for residents of $CITY. Hand-delivered Christmas flowers and festive arrangements for 2026.">
 
-  <style>
-    body{
-      font-family:serif;
-      line-height:1.8;
-      max-width:850px;
-      margin:auto;
-      padding:30px;
-      background:#fffafa;
-      color:#222;
-    }
+            <meta name="keywords" content="Christmas flowers $CITY, $TOPIC, holiday bouquets, poinsettia delivery, florist delivery">
 
-    h1{
-      color:#b91c1c;
-    }
+            <meta property="og:title" content="$TOPIC in $CITY">
+            <meta property="og:description" content="Discover the best Christmas floral trends and local flower delivery tips for $CITY.">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="https://brightlane.github.io/ChristmasFlowers/blog.html">
 
-    a{
-      color:#b91c1c;
-    }
-  </style>
-</head>
+            <style>
+              body{
+                font-family: Georgia, serif;
+                line-height:1.8;
+                max-width:900px;
+                margin:auto;
+                padding:40px;
+                background:#fffafa;
+                color:#1b5e20;
+              }
 
-<body>
+              h1,h2,h3{
+                color:#b71c1c;
+              }
 
-  <h1>Christmas Floral Trends for $CITY Residents</h1>
+              .hero{
+                background:linear-gradient(135deg,#b71c1c,#1b5e20);
+                color:white;
+                padding:50px;
+                border-radius:18px;
+                text-align:center;
+                margin-bottom:40px;
+              }
 
-  <p>
-    Discover elegant winter floral trends, luxury Christmas centerpieces,
-    wreath arrangements, poinsettias, and same-day flower delivery options
-    throughout $CITY.
-  </p>
+              .card{
+                background:white;
+                border:1px solid #e0e0e0;
+                padding:25px;
+                border-radius:14px;
+                margin:30px 0;
+                box-shadow:0 4px 12px rgba(0,0,0,0.08);
+              }
 
-  <p>
-    Seasonal bouquets continue trending across holiday dining,
-    luxury gifting, winter weddings and corporate events.
-  </p>
+              .cta{
+                display:inline-block;
+                background:#c62828;
+                color:white;
+                text-decoration:none;
+                padding:16px 32px;
+                border-radius:10px;
+                font-weight:bold;
+                margin-top:20px;
+              }
 
-  $CROSS_LINK_FOOTER
+              footer{
+                margin-top:60px;
+                padding:40px;
+                border-top:3px solid #2e7d32;
+                text-align:center;
+                background:#fffcfd;
+                border-radius:14px;
+              }
 
-</body>
-</html>
-EOF
+              nav a{
+                margin:0 10px;
+                color:#b71c1c;
+                font-weight:bold;
+                text-decoration:none;
+              }
+            </style>
+          </head>
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "SuperMatrixBot"
-          git config --global user.email "bot@brightlane.dev"
+          <body>
+
+            <div class="hero">
+              <h1>$TOPIC</h1>
+              <p>2026 Holiday Flower Delivery Guide for $CITY</p>
+
+              <a class="cta"
+                 href="https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799">
+                 Shop Christmas Collection
+              </a>
+            </div>
+
+            <article>
+
+              <div class="card">
+                <h2>Holiday Trends in $CITY</h2>
+
+                <p>
+                  The 2026 holiday season in <strong>$CITY</strong> is seeing a huge rise
+                  in demand for <strong>$TOPIC</strong>. Families are choosing locally
+                  hand-arranged floral gifts that arrive fresh and professionally styled.
+                </p>
+
+                <p>
+                  Local florist fulfillment creates faster delivery times, fresher greens,
+                  and premium presentation compared to warehouse-shipped bouquets.
+                </p>
+              </div>
+
+              <div class="card">
+                <h2>Quora Spotlight</h2>
+
+                <p><strong>Question:</strong> $QUESTION</p>
+
+                <p>
+                  <strong>Answer:</strong> When shopping for holiday flowers in
+                  <strong>$CITY</strong>, locally arranged delivery is the best option.
+                  FloristOne partners with neighborhood florists to ensure every bouquet
+                  is hand-designed and delivered fresh.
+                </p>
+              </div>
+
+              <div class="card">
+                <h2>Why Christmas Flower Delivery Matters</h2>
+
+                <p>
+                  Professional floral arrangements bring warmth and festive energy into homes,
+                  offices, churches, and holiday parties. Modern holiday bouquets combine
+                  roses, cedar, pine, poinsettias, eucalyptus, berries, and winter greenery.
+                </p>
+
+                <p>
+                  Same-day delivery helps last-minute shoppers still create memorable moments
+                  during the busiest holiday week of the year.
+                </p>
+              </div>
+
+              <div class="card">
+                <h2>Best Sellers for 2026</h2>
+
+                <ul>
+                  <li>Luxury Red Rose Christmas Bouquets</li>
+                  <li>Classic Poinsettia Gift Baskets</li>
+                  <li>Fresh Cedar Holiday Wreaths</li>
+                  <li>Winter White Centerpieces</li>
+                  <li>Gold Ribbon Designer Arrangements</li>
+                </ul>
+              </div>
+
+            </article>
+
+            <footer>
+
+              <nav>
+                <a href="index.html">Festive Home</a>
+                <a href="blog.html">Holiday Blog</a>
+                <a href="faq.html">Gift FAQs</a>
+                <a href="sitemap.xml">Sitemap</a>
+              </nav>
+
+              <p style="margin-top:20px;">
+                🎄 <strong>Now Serving $CITY:</strong>
+                <a href="https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799">
+                  Shop the Christmas Collection
+                </a>
+              </p>
+
+              <p style="font-size:0.85em;color:#666;">
+                Official Partner of FloristOne Network — Hand Delivered for the 2026 Holiday Season
+              </p>
+
+            </footer>
+
+          </body>
+          </html>
+          EOF
 
       - name: Commit Changes
         shell: bash
@@ -133,9 +253,9 @@ EOF
             exit 0
           fi
 
-          git commit -m "Engine Sync: Holiday Cross-Link Update"
+          git commit -m "SuperMatrix Sync: Holiday SEO Refresh"
 
-      - name: Safe Push Retry Loop
+      - name: Safe Push Loop
         shell: bash
         run: |
           for i in 1 2 3 4 5; do
@@ -144,20 +264,38 @@ EOF
             git fetch origin main
 
             git rebase origin/main || {
-              echo "Rebase failed. Retrying..."
               git rebase --abort || true
+              echo "Rebase failed. Retrying..."
               sleep 3
               continue
             }
 
             if git push origin main; then
-              echo "Push successful."
+              echo "Push successful"
               exit 0
             fi
 
-            echo "Push rejected. Waiting before retry..."
+            echo "Push rejected. Retrying..."
             sleep 5
           done
 
-          echo "Failed to push after multiple retries."
+          echo "Failed after multiple push attempts"
           exit 1
+
+      - name: Send Social Webhook
+        env:
+          SOCIAL_WEBHOOK_URL: ${{ secrets.SOCIAL_WEBHOOK_URL }}
+        run: |
+          if [ -n "$SOCIAL_WEBHOOK_URL" ]; then
+
+            curl -X POST "$SOCIAL_WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -d "{\"title\":\"Holiday Flower Guide\",\"url\":\"https://brightlane.github.io/ChristmasFlowers/blog.html\",\"caption\":\"Fresh Christmas flower delivery ideas for 2026 🎄\"}"
+
+          else
+            echo "SOCIAL_WEBHOOK_URL secret missing. Skipping webhook."
+          fi
+
+      - name: Workflow Complete
+        run: |
+          echo "Christmas Super Matrix Engine completed successfully"
