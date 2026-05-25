@@ -3,52 +3,218 @@ name: Christmas Flowers Engine
 on:
   schedule:
     - cron: "0 9 * * *"
-  workflow_dispatch: {}
+
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: christmas-flowers-engine
+  cancel-in-progress: false
+
 jobs:
   holiday-matrix:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "ChristmasBot"
+          git config --global user.email "bot@brightlane.dev"
+
+      - name: Sync Latest Remote
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
 
       - name: Generate Holiday Content
+        shell: bash
         run: |
-          TOPICS=("Perfect Christmas Table Centerpieces" "Sending Poinsettias for the Holidays" "Last Minute Christmas Eve Delivery" "Holiday Wreath Care Tips")
-          SELECTED_TOPIC=${TOPICS[$RANDOM % ${#TOPICS[@]}]}
-          
+          TOPICS=(
+            "Perfect Christmas Table Centerpieces"
+            "Sending Poinsettias for the Holidays"
+            "Last Minute Christmas Eve Delivery"
+            "Holiday Wreath Care Tips"
+            "Luxury Winter Rose Arrangements"
+            "Fresh Evergreen Bouquet Ideas"
+          )
+
+          SELECTED_TOPIC="${TOPICS[$RANDOM % ${#TOPICS[@]}]}"
+
           FOOTER="<footer style='margin-top:50px; padding:20px; border-top:1px solid #c62828; text-align:center; font-family:sans-serif;'>
             <nav>
-              <a href='index.html'>Home</a> | 
-              <a href='blog.html'>Holiday Blog</a> | 
-              <a href='faq.html'>FAQ</a> | 
+              <a href='index.html'>Home</a> |
+              <a href='blog.html'>Holiday Blog</a> |
+              <a href='faq.html'>FAQ</a> |
               <a href='sitemap.xml'>Sitemap</a>
             </nav>
-            <p>🎅 <a href='https://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799'><strong>Order Christmas Flowers via FloristOne</strong></a></p>
+
+            <p style='margin-top:20px;'>
+              🎅
+              <a href='https://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799'>
+                <strong>Order Christmas Flowers via FloristOne</strong>
+              </a>
+            </p>
           </footer>"
 
-          cat > blog.html << EOF
+          cat > blog.html <<EOF
           <!DOCTYPE html>
-          <html>
+          <html lang="en">
           <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
             <title>Christmas Flowers - $SELECTED_TOPIC</title>
-            <style>body{font-family:serif; line-height:1.6; max-width:800px; margin:auto; padding:20px; background:#fffafa; color:#1b5e20;}</style>
+
+            <meta name="description"
+                  content="$SELECTED_TOPIC — expert 2026 Christmas flower delivery tips and holiday floral inspiration.">
+
+            <style>
+              body{
+                font-family:Georgia,serif;
+                line-height:1.7;
+                max-width:850px;
+                margin:auto;
+                padding:30px;
+                background:#fffafa;
+                color:#1b5e20;
+              }
+
+              h1{
+                color:#c62828;
+              }
+
+              .hero{
+                background:linear-gradient(135deg,#c62828,#1b5e20);
+                color:white;
+                padding:40px;
+                border-radius:16px;
+                text-align:center;
+                margin-bottom:40px;
+              }
+
+              .card{
+                background:white;
+                padding:25px;
+                border-radius:12px;
+                box-shadow:0 4px 12px rgba(0,0,0,0.08);
+                margin-bottom:30px;
+              }
+
+              .cta{
+                display:inline-block;
+                background:#c62828;
+                color:white;
+                padding:14px 28px;
+                border-radius:8px;
+                text-decoration:none;
+                font-weight:bold;
+                margin-top:20px;
+              }
+            </style>
           </head>
+
           <body>
-            <h1 style="color:#c62828;">$SELECTED_TOPIC</h1>
-            <p>Make the season bright with hand-delivered floral gifts...</p>
+
+            <div class="hero">
+              <h1>$SELECTED_TOPIC</h1>
+
+              <p>
+                Christmas flower inspiration, holiday delivery ideas,
+                and festive bouquet trends for 2026.
+              </p>
+
+              <a class="cta"
+                 href="https://www.floristone.com/index.cfm?source_id=aff&AffiliateID=2013017799">
+                 Shop Christmas Flowers
+              </a>
+            </div>
+
+            <div class="card">
+              <h2>Holiday Flower Trends for 2026</h2>
+
+              <p>
+                Seasonal floral arrangements continue growing in popularity as
+                families decorate homes, offices, churches, and holiday events
+                with elegant winter greenery and festive bouquets.
+              </p>
+
+              <p>
+                Professional florist delivery ensures fresher flowers, better
+                presentation, and reliable same-day arrival during the busiest
+                holiday shopping weeks of the year.
+              </p>
+            </div>
+
+            <div class="card">
+              <h2>Why Christmas Flowers Make Perfect Gifts</h2>
+
+              <p>
+                Floral gifts create emotional connections and instantly brighten
+                holiday celebrations. Popular seasonal arrangements include
+                poinsettias, roses, cedar wreaths, winter berries, pine accents,
+                and elegant centerpieces.
+              </p>
+
+              <p>
+                Last-minute delivery options make it easy to surprise loved ones
+                even on Christmas Eve.
+              </p>
+            </div>
+
             $FOOTER
+
           </body>
           </html>
           EOF
 
-      - name: Commit and Push
+      - name: Commit Changes
+        shell: bash
         run: |
-          git config user.name "ChristmasBot"
-          git config user.email "bot@brightlane.dev"
           git add blog.html
-          git commit -m "Holiday Update: $SELECTED_TOPIC" || echo "No changes"
-          git push
+
+          if git diff --cached --quiet; then
+            echo "No changes detected"
+            exit 0
+          fi
+
+          git commit -m "Holiday Update: Christmas SEO Refresh"
+
+      - name: Safe Push Retry Loop
+        shell: bash
+        run: |
+          for i in 1 2 3 4 5; do
+            echo "Push attempt $i"
+
+            git fetch origin main
+
+            git rebase origin/main || {
+              echo "Rebase failed"
+              git rebase --abort || true
+              sleep 3
+              continue
+            }
+
+            if git push origin main; then
+              echo "Push successful"
+              exit 0
+            fi
+
+            echo "Push rejected. Retrying..."
+            sleep 5
+          done
+
+          echo "Push failed after multiple attempts"
+          exit 1
+
+      - name: Workflow Complete
+        run: |
+          echo "Christmas Flowers Engine completed successfully"
