@@ -8,60 +8,140 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: git-push-lock   # shared lock across ALL three workflows
+  cancel-in-progress: false
+
 jobs:
   update-christmas-matrix:
     runs-on: ubuntu-latest
+
     steps:
       - name: Sync Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
-      - name: Programmatic Content Generation
+      - name: Configure Git
         run: |
-          # 1. Headline & City Arrays
-          HEADLINES=("Bespoke Christmas Floral Arrangements" "Artisanal Holiday Greens" "Festive Poinsettia Delivery")
-          CITIES=("Chicago, IL" "New York, NY" "Los Angeles, CA" "Toronto, ON" "Dallas, TX" "Miami, FL" "Seattle, WA")
-          
-          SELECTED_H=${HEADLINES[$RANDOM % ${#HEADLINES[@]}]}
-          SELECTED_C=${CITIES[$RANDOM % ${#CITIES[@]}]}
-          
-          # 2. Reusable Holiday Footer
+          git config --global user.name "HolidayVelocityBot"
+          git config --global user.email "bot@brightlane.dev"
+
+      - name: Sync Latest Remote
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+      - name: Generate regional.html
+        shell: bash
+        run: |
+          HEADLINES=(
+            "Bespoke Christmas Floral Arrangements"
+            "Artisanal Holiday Greens"
+            "Festive Poinsettia Delivery"
+            "Same-Day Holiday Bouquets"
+            "Winter Wreath Delivery Guide"
+          )
+          CITIES=(
+            "Chicago, IL"
+            "New York, NY"
+            "Los Angeles, CA"
+            "Toronto, ON"
+            "Dallas, TX"
+            "Miami, FL"
+            "Seattle, WA"
+            "Vancouver, BC"
+          )
+
+          SELECTED_H="${HEADLINES[$RANDOM % ${#HEADLINES[@]}]}"
+          SELECTED_C="${CITIES[$RANDOM % ${#CITIES[@]}]}"
+
+          # Export for commit step
+          echo "SELECTED_H=$SELECTED_H" >> $GITHUB_ENV
+          echo "SELECTED_C=$SELECTED_C" >> $GITHUB_ENV
+
           FOOTER="<footer style='margin-top:50px; padding:30px; border-top:2px solid #2e7d32; text-align:center; font-family:serif;'>
             <nav>
-              <a href='index.html'>Festive Home</a> | 
-              <a href='blog.html'>Holiday Insights</a> | 
-              <a href='faq.html'>Gift FAQ</a> | 
+              <a href='index.html'>Festive Home</a> |
+              <a href='blog.html'>Holiday Blog</a> |
+              <a href='seasonal.html'>Seasonal Tips</a> |
+              <a href='regional.html'>Regional Guide</a> |
+              <a href='faq.html'>Gift FAQ</a> |
               <a href='sitemap.xml'>Sitemap</a>
             </nav>
-            <p>🎄 <strong>Local Delivery in $SELECTED_C:</strong> <a href='https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799'>Check Delivery Slots</a></p>
+            <p>🎄 <strong>Local Delivery in ${SELECTED_C}:</strong>
+              <a href='https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799'>Check Delivery Slots</a>
+            </p>
           </footer>"
 
-          # 3. Build blog.html with Regional Data
-          cat > blog.html << EOF
+          cat > regional.html << EOF
           <!DOCTYPE html>
           <html lang="en">
           <head>
-            <title>$SELECTED_H in $SELECTED_C | Christmas 2026</title>
-            <style>body{font-family:serif; line-height:1.8; max-width:850px; margin:auto; padding:30px; background:#fffafa;}</style>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>${SELECTED_H} in ${SELECTED_C} | Christmas 2026</title>
+            <meta name="description" content="${SELECTED_H} available in ${SELECTED_C}. Local florist delivery for the 2026 holiday season.">
+            <link rel="canonical" href="https://brightlane.github.io/ChristmasFlowers/regional.html" />
+            <style>
+              body{font-family:serif;line-height:1.8;max-width:850px;margin:auto;padding:30px;background:#fffafa;color:#1b5e20;}
+              h1,h3{color:#c62828;}
+              .highlight{background:#f1f8e9;padding:20px;border-radius:10px;margin:20px 0;}
+            </style>
           </head>
           <body>
-            <h1 style="color:#c62828;">$SELECTED_H in $SELECTED_C</h1>
+            <h1>${SELECTED_H} in ${SELECTED_C}</h1>
             <article>
-              <p>The 2026 holiday season in <strong>$SELECTED_C</strong> is looking more vibrant than ever. Whether you are decorating a home in the heart of the city or sending a gift to the suburbs, our local floral partners are ready...</p>
-              
-              <div style="background:#f1f8e9; padding:20px; border-radius:10px; margin:20px 0;">
-                <h3>Why Order in $SELECTED_C Today?</h3>
-                <p>We leverage a network of premier local florists across the greater $SELECTED_C area to ensure your holiday wreaths and poinsettias arrive fresh, never boxed.</p>
+              <p>The 2026 holiday season in <strong>${SELECTED_C}</strong> is looking more vibrant than ever. Whether you are decorating a home in the heart of the city or sending a gift to the suburbs, our local floral partners are ready.</p>
+
+              <div class="highlight">
+                <h3>Why Order in ${SELECTED_C} Today?</h3>
+                <p>We leverage a network of premier local florists across the greater ${SELECTED_C} area to ensure your holiday wreaths and poinsettias arrive fresh, never boxed.</p>
               </div>
+
+              <h2>Delivery Coverage Across ${SELECTED_C}</h2>
+              <p>Our FloristOne partners cover every neighbourhood in ${SELECTED_C}, from downtown cores to suburban zip codes. Same-day slots fill up fast in December — order early to guarantee your preferred delivery window.</p>
             </article>
             $FOOTER
           </body>
           </html>
           EOF
 
-      - name: Deploy Update
+      - name: Commit Changes
+        shell: bash
         run: |
-          git config user.name "HolidayVelocityBot"
-          git config user.email "bot@brightlane.dev"
-          git add blog.html
-          git commit -m "Regional Update: $SELECTED_H ($SELECTED_C)" || echo "No changes"
-          git push
+          git add regional.html
+
+          if git diff --cached --quiet; then
+            echo "No changes detected"
+            exit 0
+          fi
+
+          git commit -m "Regional Update: ${SELECTED_H} (${SELECTED_C})"
+
+      - name: Safe Push Retry Loop
+        shell: bash
+        run: |
+          for i in 1 2 3 4 5; do
+            echo "Push attempt $i"
+            git fetch origin main
+            git rebase origin/main || {
+              echo "Rebase failed, retrying..."
+              git rebase --abort || true
+              sleep 5
+              continue
+            }
+            if git push origin main; then
+              echo "Push successful"
+              exit 0
+            fi
+            echo "Push rejected. Retrying in 5s..."
+            sleep 5
+          done
+          echo "Push failed after 5 attempts"
+          exit 1
+
+      - name: Workflow Complete
+        run: echo "Holiday Velocity Engine complete. File: regional.html"
