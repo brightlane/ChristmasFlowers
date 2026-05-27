@@ -49,7 +49,9 @@ jobs:
           SELECTED_TOPIC="${TOPICS[$RANDOM % ${#TOPICS[@]}]}"
           echo "SELECTED_TOPIC=$SELECTED_TOPIC" >> $GITHUB_ENV
 
-          AFFILIATE="https://www.floristone.com/index.cfm?source_id=christmas&AffiliateID=2013017799"
+          BASE="https://www.floristone.com/index.cfm"
+          PARAMS="source_id=christmas&AffiliateID=2013017799"
+          AFFILIATE="${BASE}?${PARAMS}"
 
           cat > seasonal.html << EOF
 <!DOCTYPE html>
