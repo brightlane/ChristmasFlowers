@@ -52,26 +52,15 @@ jobs:
           fi
           git commit -m "Seasonal Update ${SELECTED_TOPIC}"
 
-      - name: Safe Push Retry Loop
+      - name: Push with Retry
         shell: bash
         run: |
           for i in 1 2 3 4 5; do
-            echo "Push attempt $i"
             git fetch origin main
-            git rebase origin/main || {
-              echo "Rebase failed, retrying..."
-              git rebase --abort || true
-              sleep 5
-              continue
-            }
-            if git push origin main; then
-              echo "Push successful"
-              exit 0
-            fi
-            echo "Push rejected. Retrying in 5s..."
+            git rebase origin/main && git push origin main && exit 0
+            git rebase --abort
             sleep 5
           done
-          echo "Push failed after 5 attempts"
           exit 1
 
       - name: Done
